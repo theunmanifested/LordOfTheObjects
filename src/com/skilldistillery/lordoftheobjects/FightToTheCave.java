@@ -36,7 +36,8 @@ public class FightToTheCave {
 
 		// Get User input
 		Scanner kb = new Scanner(System.in);
-		int choice, move;
+		int choice, move, numEnemy;
+		boolean isDead = false;
 		// choice must be 1, 2, or 3
 		do {
 			// Greet the player and ask for choice of character/player
@@ -76,31 +77,23 @@ public class FightToTheCave {
 			// Player can now walk along the town
 			walkAlong();
 			move = kb.nextInt();
-			kb.nextLine();
 		} while (move < 1 || move > 3);
 		// create a player/character
 		switch (move) {
+		// currently only knight can playthrough
 		case 1:
-			System.out.println(
-					"You walk Left, and you enter an evergreen forest...\n!!!!!WARNINNG!!!!!!!\nA Goblin appears before you ready to a fight!\nHe attacks you\n.... You Take a Direct Hit!");
-			System.out.println("What would you like to name your Knight? ");
-			String kName = kb.nextLine();
-			knight.setName(kName);
-			knight.setHasWeapon(false);
+			numEnemy = 1;
+//			do {
+			attackEnemy(numEnemy, knight.isHasWeapon(), knight, goblin);
+//			} while (goblin.getEnemHitPoints() > 0);
 			break;
 		case 2:
-			System.out.println("You have chosen to be a Ranger!");
-			System.out.println("What would you like to name your Ranger? ");
-			String rName = kb.nextLine();
-			ranger.setName(rName);
-			ranger.setHasWeapon(false);
+			numEnemy = 2;
+			attackEnemy(numEnemy, knight.isHasWeapon(), knight, orc);
 			break;
 		case 3:
-			System.out.println("You have chosen to be a Mage!");
-			System.out.println("What would you like to name your Mage? ");
-			String mName = kb.nextLine();
-			mage.setName(mName);
-			mage.setHasWeapon(false);
+			numEnemy = 3;
+			attackEnemy(numEnemy, knight.isHasWeapon(), knight, dragon);
 			break;
 		default:
 			System.out.println("Must Enter: \"1\", \"2\", or \"3\"");
@@ -129,4 +122,25 @@ public class FightToTheCave {
 		System.out.println("You must now choose how you want to Walk along the town...");
 		System.out.println("\"1\" Left (Forest), \"2\" Stright (Alleyway), \"3\" Right (Darker Forest)");
 	}
+	
+	public static void attackEnemy(int numEnemy, boolean hasWeapon,PlayerRoles chosenPlayer, Enemies currentEnemy) {
+		System.out.println(
+				"You are in an evergreen forest...\n\n!!!!!WARNINNG!!!!!!!\n\nA Goblin appears before you ready to a fight!\nHe attacks you\n\n.... You Take a Direct Hit! and You Attack Back!!!\nYou strike a powerful blow!\n\n");
+		if (hasWeapon) {
+			currentEnemy.setEnemHitPoints(currentEnemy.getEnemHitPoints() - 50);
+			System.out.println("Enemy's Health left is: " + currentEnemy.getEnemHitPoints());
+
+		} else {
+			currentEnemy.setEnemHitPoints(currentEnemy.getEnemHitPoints() - 25);
+			System.out.println("Enemy's Health left is: " + currentEnemy.getEnemHitPoints());
+		}
+//		 check if enemy is dead
+//		if (currentEnemy.getEnemHitPoints() > 0) {
+//			return false;
+//		} else {
+//			System.out.println("\n YOU HAVE SLAINED YOUR ENEMY!");
+//			return true;
+//		}
+	}
+
 }
