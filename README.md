@@ -1,3 +1,3 @@
-# Fight To The creative
+# Fight To The Cave
 
 ## Text-Based Game
