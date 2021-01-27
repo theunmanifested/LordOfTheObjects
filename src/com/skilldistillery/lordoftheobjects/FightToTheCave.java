@@ -1,7 +1,16 @@
 //Task 1: Class Design
 
-// Classic RPG - Fight To The Cave
-// Primary Player - Abstract Class
+// Game Name:  Fight To The Cave
+
+// Game Style/Type: Classic RPG
+
+// Storyline: Middle Ages / Medieval Town is in distress! There are enemies attacking the town, and we need a hero to eliminate them...
+
+// GamePlay: Our hero will choose where to go, and attack each of the enemies until the end boss, Dragon, has been slayed! Game ends when
+//           the hero either dies, or defeats the enemies. Must have at least have 3 kills! Each character will have a weapon, and damage
+//			 will make damage double, and after a kill, an enemy might "drop" an item.
+
+// Characters: 
 //      - Knight
 //		- Ranger
 // 		- Mage
@@ -14,9 +23,8 @@
 //		- Drops (Weapon = Sword, Bow, Staff)
 //		- Hearts (health) // printout hearts depending on health
 
-// 
 
-//Task 2: Implementation
+//Task 2: Implementation - GitHub Repo:  https://github.com/theunmanifested/LordOfTheObjects 
 
 package com.skilldistillery.lordoftheobjects;
 
@@ -77,23 +85,22 @@ public class FightToTheCave {
 			// Player can now walk along the town
 			walkAlong();
 			move = kb.nextInt();
+			kb.nextLine();
 		} while (move < 1 || move > 3);
 		// create a player/character
 		switch (move) {
 		// currently only knight can playthrough
 		case 1:
 			numEnemy = 1;
-//			do {
-			attackEnemy(numEnemy, knight.isHasWeapon(), knight, goblin);
-//			} while (goblin.getEnemHitPoints() > 0);
+			attackEnemy(numEnemy, knight.isHasWeapon(), knight, goblin);			
 			break;
 		case 2:
 			numEnemy = 2;
-			attackEnemy(numEnemy, knight.isHasWeapon(), knight, orc);
+//			attackEnemy(numEnemy, knight.isHasWeapon(), knight, orc);
 			break;
 		case 3:
 			numEnemy = 3;
-			attackEnemy(numEnemy, knight.isHasWeapon(), knight, dragon);
+//			attackEnemy(numEnemy, knight.isHasWeapon(), knight, dragon);
 			break;
 		default:
 			System.out.println("Must Enter: \"1\", \"2\", or \"3\"");
@@ -123,9 +130,9 @@ public class FightToTheCave {
 		System.out.println("\"1\" Left (Forest), \"2\" Stright (Alleyway), \"3\" Right (Darker Forest)");
 	}
 	
-	public static void attackEnemy(int numEnemy, boolean hasWeapon,PlayerRoles chosenPlayer, Enemies currentEnemy) {
+	public static void attackEnemy(int numEnemy, boolean hasWeapon,PlayerRoles chosenPlayer, Goblin currentEnemy) {
 		System.out.println(
-				"You are in an evergreen forest...\n\n!!!!!WARNINNG!!!!!!!\n\nA Goblin appears before you ready to a fight!\nHe attacks you\n\n.... You Take a Direct Hit! and You Attack Back!!!\nYou strike a powerful blow!\n\n");
+				"You walk Left, and you enter an evergreen forest...\n\n!!!!!WARNINNG!!!!!!!\n\nA Goblin appears before you ready to a fight!\nHe attacks you\n\n.... You Take a Direct Hit! and You Attack Back!!!\nYou strike a powerful blow!\n\n");
 		if (hasWeapon) {
 			currentEnemy.setEnemHitPoints(currentEnemy.getEnemHitPoints() - 50);
 			System.out.println("Enemy's Health left is: " + currentEnemy.getEnemHitPoints());
@@ -133,14 +140,7 @@ public class FightToTheCave {
 		} else {
 			currentEnemy.setEnemHitPoints(currentEnemy.getEnemHitPoints() - 25);
 			System.out.println("Enemy's Health left is: " + currentEnemy.getEnemHitPoints());
-		}
-//		 check if enemy is dead
-//		if (currentEnemy.getEnemHitPoints() > 0) {
-//			return false;
-//		} else {
-//			System.out.println("\n YOU HAVE SLAINED YOUR ENEMY!");
-//			return true;
-//		}
+		}			
 	}
 
 }

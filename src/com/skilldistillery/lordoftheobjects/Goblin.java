@@ -2,7 +2,7 @@ package com.skilldistillery.lordoftheobjects;
 
 public class Goblin extends Enemies{
 	private String enemName = "Goblin";
-	
+	private int enemHitPoints = 100;
 	
 	public Goblin() {
 		super();
@@ -11,7 +11,7 @@ public class Goblin extends Enemies{
 	public Goblin(String enemName, int enemHitPoints) {
 		super();
 		this.enemName = enemName;
-//		this.enemHitPoints = enemHitPoints;
+		this.enemHitPoints = enemHitPoints;
 	}
 
 	public String getEnemName() {
@@ -22,19 +22,19 @@ public class Goblin extends Enemies{
 		this.enemName = enemName;
 	}
 
-//	public int getEnemHitPoints() {
-//		return enemHitPoints;
-//	}
-//
-//	public void setEnemHitPoints(int enemHitPoints) {
-//		this.enemHitPoints = enemHitPoints;
-//	}
+	public int getEnemHitPoints() {
+		return enemHitPoints;
+	}
+
+	public void setEnemHitPoints(int enemHitPoints) {
+		this.enemHitPoints = enemHitPoints;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-//		result = prime * result + enemHitPoints;
+		result = prime * result + enemHitPoints;
 		result = prime * result + ((enemName == null) ? 0 : enemName.hashCode());
 		return result;
 	}
@@ -48,8 +48,8 @@ public class Goblin extends Enemies{
 		if (getClass() != obj.getClass())
 			return false;
 		Goblin other = (Goblin) obj;
-//		if (enemHitPoints != other.enemHitPoints)
-//			return false;
+		if (enemHitPoints != other.enemHitPoints)
+			return false;
 		if (enemName == null) {
 			if (other.enemName != null)
 				return false;
@@ -60,7 +60,7 @@ public class Goblin extends Enemies{
 
 	@Override
 	public String toString() {
-		return "Goblin [enemName=" + enemName + ", enemHitPoints=" + super.getEnemHitPoints() + "]";
+		return "Goblin [enemName=" + enemName + ", enemHitPoints=" + enemHitPoints + "]";
 	}
 	
 	
